@@ -179,7 +179,7 @@ module.exports = function runTests(algo, allTestData, nMaxFailedTests = 0) {
 
     const savedResult = [
       ...newResults,
-      ...oldTestResults
+      ...oldTestResults || []
     ];
 
     localStorage.setItem(name, JSON.stringify(savedResult, null, 2));

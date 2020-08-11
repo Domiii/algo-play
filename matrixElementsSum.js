@@ -6,7 +6,7 @@ const runTests = require('./testUtil/runTests');
 function matrixElementsSum(m) {
   let sum = m.reduce((rowAcc, row, r) =>
     rowAcc + row.reduce((cellAcc, cell, c) => {
-      if (r < m.length-1 && m[r+1][c] === 0) {
+      if (r > 0 && m[r-1][c] === 0) {
         m[r][c] = 0;
       }
       return cellAcc + m[r][c];
