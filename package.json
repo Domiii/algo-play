@@ -1,0 +1,18 @@
+{
+  "name": "algos",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "@dbux/common": "^0.1.26",
+    "colors": "^1.4.0",
+    "lodash": "^4.17.19",
+    "node-localstorage": "^2.1.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
