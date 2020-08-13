@@ -48,11 +48,11 @@ function filterTestData(name, testData, nMaxFailedTests) {
     const previousStatus = getPreviousTestStatus(previousTestResults, t);
     const hasFailed = !!previousStatus && previousStatus !== TestResultStatus.Sucess;
     const hasRun = !previousStatus;
-    const shouldRun = 
+    const shouldRun =
       hasRun ||
       (hasFailed && nFailed < nMaxFailedTests);
     acc.push(shouldRun);
-    return [acc, nFailed+hasFailed];
+    return [acc, nFailed + hasFailed];
   }, [[], 0]);
 
   // return testData split into two: tests to include 
@@ -108,7 +108,10 @@ module.exports = function runTests(algo, allTestData, nMaxFailedTests = 0) {
       try {
         // NOTE: algo might change input, so we want to keep the original
         const copiedInput = cloneDeep(input);
-        actualOutput = algo(copiedInput);
+        actualOutput = algo(...copiedInput);
+        if (actualOutput === undefined) {
+          actualOutput = null;
+        }
         isCorrect = isEqual(actualOutput, expectedOutput);
       }
       catch (err) {
@@ -171,10 +174,10 @@ module.exports = function runTests(algo, allTestData, nMaxFailedTests = 0) {
 
       // report!
       log(color);
-      log(color, `Test #${i + 1}: ${statusMessage}`);
+      log(color, `${statusMessage} Test #${i + 1}`);
       log(color, `  Input:    ${JSON.stringify(input)}`);
-      log(color, `  Expected: ${JSON.stringify(expectedOutput)}`);
       log(color, `  Actual:   ${JSON.stringify(actualOutput)}`);
+      log(color, `  Expected: ${JSON.stringify(expectedOutput)}`);
     }
 
     const savedResult = [
